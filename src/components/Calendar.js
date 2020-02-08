@@ -238,6 +238,9 @@ class Calendar extends PureComponent {
                   readOnly
                   value={this.formatDateDisplay(range.startDate, 'Early')}
                 />
+                <span>
+                  <input type="time" />
+                </span>
               </span>
               <span
                 className={classnames(styles.dateDisplayItem, {
@@ -249,6 +252,9 @@ class Calendar extends PureComponent {
                   readOnly
                   value={this.formatDateDisplay(range.endDate, 'Continuous')}
                 />
+                <span>
+                  <input type="time" />
+                </span>
               </span>
             </div>
           );
@@ -392,7 +398,10 @@ class Calendar extends PureComponent {
                       style={
                         isVertical
                           ? { height: this.estimateMonthSize(index) }
-                          : { height: scrollArea.monthHeight, width: this.estimateMonthSize(index) }
+                          : {
+                              height: scrollArea.monthHeight,
+                              width: this.estimateMonthSize(index),
+                            }
                       }
                       showMonthName
                       showWeekDays={!isVertical}
