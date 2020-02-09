@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Calendar, DateRange, DateRangePicker, DefinedRange } from '../../../src';
+import {
+  Calendar,
+  DateRange,
+  DateRangePicker,
+  DefinedRange,
+} from '../../../src';
 import * as rdrLocales from '../../../src/locale';
 import { format, addDays } from 'date-fns';
 import Section from './Section';
@@ -57,7 +62,7 @@ import '../../../src/theme/default.scss';
 
 function formatDateDisplay(date, defaultText) {
   if (!date) return defaultText;
-  return format(date, 'MM/DD/YYYY');
+  return format(date, 'MM/DD/YYYY HH:mm');
 }
 
 export default class Main extends Component {
@@ -148,12 +153,16 @@ export default class Main extends Component {
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.dateRangePicker.selection.startDate)}
+              value={formatDateDisplay(
+                this.state.dateRangePicker.selection.startDate
+              )}
             />
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.dateRangePicker.selection.endDate)}
+              value={formatDateDisplay(
+                this.state.dateRangePicker.selection.endDate
+              )}
             />
           </div>
           <div>
@@ -174,12 +183,16 @@ export default class Main extends Component {
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.dateRangePickerI.selection.startDate)}
+              value={formatDateDisplay(
+                this.state.dateRangePickerI.selection.startDate
+              )}
             />
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.dateRangePickerI.selection.endDate)}
+              value={formatDateDisplay(
+                this.state.dateRangePickerI.selection.endDate
+              )}
             />
           </div>
           <div>
@@ -191,7 +204,10 @@ export default class Main extends Component {
               maxDate={addDays(new Date(), 900)}
               direction="vertical"
               scroll={{ enabled: true }}
-              ranges={[this.state.dateRangePickerI.selection, this.state.dateRangePickerI.compare]}
+              ranges={[
+                this.state.dateRangePickerI.selection,
+                this.state.dateRangePickerI.compare,
+              ]}
             />
           </div>
         </Section>
@@ -202,13 +218,19 @@ export default class Main extends Component {
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.multipleRanges.selection1.startDate, '-')}
+              value={formatDateDisplay(
+                this.state.multipleRanges.selection1.startDate,
+                '-'
+              )}
             />
             <label className={'label'}>Selection1 End:</label>
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.multipleRanges.selection1.endDate, 'Continuous')}
+              value={formatDateDisplay(
+                this.state.multipleRanges.selection1.endDate,
+                'Continuous'
+              )}
             />
             <div className={'newLine'} />
 
@@ -216,13 +238,19 @@ export default class Main extends Component {
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.multipleRanges.selection2.startDate, '-')}
+              value={formatDateDisplay(
+                this.state.multipleRanges.selection2.startDate,
+                '-'
+              )}
             />
             <label className={'label'}>Selection2 End:</label>
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.multipleRanges.selection2.endDate, 'Continuous')}
+              value={formatDateDisplay(
+                this.state.multipleRanges.selection2.endDate,
+                'Continuous'
+              )}
             />
             <div className={'newLine'} />
 
@@ -230,13 +258,19 @@ export default class Main extends Component {
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.multipleRanges.selection3.startDate, '-')}
+              value={formatDateDisplay(
+                this.state.multipleRanges.selection3.startDate,
+                '-'
+              )}
             />
             <label className={'label'}>Selection3 End:</label>
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.multipleRanges.selection3.endDate, 'Continuous')}
+              value={formatDateDisplay(
+                this.state.multipleRanges.selection3.endDate,
+                'Continuous'
+              )}
             />
           </div>
           <DateRangePicker
@@ -254,7 +288,8 @@ export default class Main extends Component {
           <div>
             <select
               onChange={e => this.setState({ locale: e.target.value })}
-              value={this.state.locale}>
+              value={this.state.locale}
+            >
               {localeOptions.map((option, i) => (
                 <option value={option.value} key={i}>
                   {option.label}
@@ -280,12 +315,17 @@ export default class Main extends Component {
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.dateRange.selection.startDate)}
+              value={formatDateDisplay(
+                this.state.dateRange.selection.startDate
+              )}
             />
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.dateRange.selection.endDate, 'Continuous')}
+              value={formatDateDisplay(
+                this.state.dateRange.selection.endDate,
+                'Continuous'
+              )}
             />
           </div>
 
@@ -301,12 +341,17 @@ export default class Main extends Component {
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.definedRange.selection.startDate)}
+              value={formatDateDisplay(
+                this.state.definedRange.selection.startDate
+              )}
             />
             <input
               type="text"
               readOnly
-              value={formatDateDisplay(this.state.definedRange.selection.endDate, 'Continuous')}
+              value={formatDateDisplay(
+                this.state.definedRange.selection.endDate,
+                'Continuous'
+              )}
             />
           </div>
 
