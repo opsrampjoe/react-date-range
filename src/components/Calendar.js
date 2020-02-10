@@ -387,7 +387,7 @@ class Calendar extends PureComponent {
       endDate: end,
     };
     this.setState({ drag: { status: false, range: {} } }, () => {
-      updateRange && updateRange(newRange);
+      updateRange && updateRange(newRange, false);
     });
   }
   render() {
