@@ -172,6 +172,7 @@ export default class Main extends Component {
               moveRangeOnFirstSelection={false}
               className={'PreviewArea'}
               months={2}
+              showTime
               ranges={[this.state.dateRangePicker.selection]}
               direction="horizontal"
             />

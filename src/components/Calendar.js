@@ -233,7 +233,7 @@ class Calendar extends PureComponent {
     );
   }
   renderDateDisplay() {
-    const { focusedRange, color, ranges, rangeColors } = this.props;
+    const { focusedRange, color, ranges, rangeColors, showTime } = this.props;
     const defaultColor = rangeColors[focusedRange[0]] || color;
     const styles = this.styles;
     return (
@@ -264,7 +264,7 @@ class Calendar extends PureComponent {
                 />
 
                 <input
-                  type="time"
+                  type={showTime ? 'time' : 'hidden'}
                   value={this.formatTimeDisplay(range.startDate)}
                   onChange={evt => {
                     this.updateTime(
@@ -290,7 +290,7 @@ class Calendar extends PureComponent {
                 />
 
                 <input
-                  type="time"
+                  type={showTime ? 'time' : 'hidden'}
                   value={this.formatTimeDisplay(range.endDate)}
                   onChange={evt => {
                     this.updateTime(
