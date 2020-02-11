@@ -24,7 +24,7 @@ class DateRange extends Component {
     this.styles = generateStyles([coreStyles, props.classNames]);
   }
   calcNewSelection(value, isSingleValue = true, focusChange = true) {
-    const { focusedRange } = this.props.focusedRange || this.state.focusedRange;
+    const focusedRange = this.props.focusedRange || this.state.focusedRange;
     const { ranges, onChange, maxDate, moveRangeOnFirstSelection } = this.props;
     const focusedRangeIndex = focusedRange[0];
     const selectedRange = ranges[focusedRangeIndex];
