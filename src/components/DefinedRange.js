@@ -15,11 +15,11 @@ class DefinedRanges extends Component {
     this.handleRangeChange = this.handleRangeChange.bind(this);
   }
   handleRangeChange(range) {
-    const { onChange, ranges, focusedRangeIndex } = this.props;
-    const selectedRange = ranges[focusedRangeIndex];
+    const { onChange, ranges, focusedRange } = this.props;
+    const selectedRange = ranges[focusedRange[0]];
     if (!onChange || !selectedRange) return;
     onChange({
-      [selectedRange.key || `range${focusedRangeIndex + 1}`]: { ...selectedRange, ...range },
+      [selectedRange.key || `range${focusedRange[0] + 1}`]: { ...selectedRange, ...range },
     });
   }
   getSelectedRange(ranges, staticRange) {
@@ -33,17 +33,14 @@ class DefinedRanges extends Component {
   render() {
     const { onPreviewChange, ranges, rangeColors, className } = this.props;
     return (
-      <div
-        className={cx(styles.definedRangesWrapper, className)}
-        onMouseLeave={() => {
-          this.props.onPreviewChange && this.props.onPreviewChange();
-        }}>
+      <div className={cx(styles.definedRangesWrapper, className)}>
         {this.props.headerContent}
         <div className={styles.staticRanges}>
           {this.props.staticRanges.map((staticRange, i) => {
             const { selectedRange, focusedRangeIndex } = this.getSelectedRange(ranges, staticRange);
             return (
               <button
+                type="button"
                 className={cx(styles.staticRange, {
                   [styles.staticRangeSelected]: Boolean(selectedRange),
                 })}
@@ -57,7 +54,10 @@ class DefinedRanges extends Component {
                 onFocus={() => onPreviewChange && onPreviewChange(staticRange.range(this.props))}
                 onMouseOver={() =>
                   onPreviewChange && onPreviewChange(staticRange.range(this.props))
-                }>
+                }
+                onMouseLeave={() => {
+                  this.props.onPreviewChange && this.props.onPreviewChange();
+                }}>
                 <span tabIndex={-1} className={styles.staticRangeLabel}>
                   {staticRange.label}
                 </span>
@@ -81,7 +81,7 @@ class DefinedRanges extends Component {
                 max={99999}
                 value={
                   rangeOption.getCurrentValue
-                    ? rangeOption.getCurrentValue(ranges[this.props.focusedRangeIndex] || {})
+                    ? rangeOption.getCurrentValue(ranges[this.props.focusedRange[0]] || {})
                     : '-'
                 }
               />
@@ -99,7 +99,7 @@ DefinedRanges.propTypes = {
   inputRanges: PropTypes.array,
   staticRanges: PropTypes.array,
   ranges: PropTypes.arrayOf(rangeShape),
-  focusedRangeIndex: PropTypes.number,
+  focusedRange: PropTypes.arrayOf(PropTypes.number),
   onPreviewChange: PropTypes.func,
   onChange: PropTypes.func,
   footerContent: PropTypes.any,
@@ -113,7 +113,7 @@ DefinedRanges.defaultProps = {
   staticRanges: defaultStaticRanges,
   ranges: [],
   rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
-  focusedRangeIndex: 0,
+  focusedRange: [0, 0],
 };
 
 export default DefinedRanges;

@@ -71,7 +71,7 @@ class DayCell extends Component {
     const {
       isPassive,
       isToday,
-      isSunday,
+      isWeekend,
       isStartOfWeek,
       isEndOfWeek,
       isStartOfMonth,
@@ -84,7 +84,7 @@ class DayCell extends Component {
       [styles.dayPassive]: isPassive,
       [styles.dayDisabled]: disabled,
       [styles.dayToday]: isToday,
-      [styles.daySunday]: isSunday,
+      [styles.dayWeekend]: isWeekend,
       [styles.dayStartOfWeek]: isStartOfWeek,
       [styles.dayEndOfWeek]: isEndOfWeek,
       [styles.dayStartOfMonth]: isStartOfMonth,
@@ -123,8 +123,13 @@ class DayCell extends Component {
     }
 
     const inRanges = ranges.reduce((result, range) => {
-      const startDate = range.startDate ? endOfDay(range.startDate) : null;
-      const endDate = range.endDate ? startOfDay(range.endDate) : null;
+      let startDate = range.startDate;
+      let endDate = range.endDate;
+      if (startDate && endDate && isBefore(endDate, startDate)) {
+        [startDate, endDate] = [endDate, startDate];
+      }
+      startDate = startDate ? endOfDay(startDate) : null;
+      endDate = endDate ? startOfDay(endDate) : null;
       const isInRange =
         (!startDate || isAfter(day, startDate)) && (!endDate || isBefore(day, endDate));
       const isStartEdge = !isInRange && isSameDay(day, startDate);
@@ -159,6 +164,7 @@ class DayCell extends Component {
     const { styles } = this.props;
     return (
       <button
+        type="button"
         onMouseEnter={this.handleMouseEvent}
         onMouseLeave={this.handleMouseEvent}
         onFocus={this.handleMouseEvent}
@@ -206,7 +212,7 @@ DayCell.propTypes = {
   disabled: PropTypes.bool,
   isPassive: PropTypes.bool,
   isToday: PropTypes.bool,
-  isSunday: PropTypes.bool,
+  isWeekend: PropTypes.bool,
   isStartOfWeek: PropTypes.bool,
   isEndOfWeek: PropTypes.bool,
   isStartOfMonth: PropTypes.bool,
