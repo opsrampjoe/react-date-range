@@ -1,4 +1,6 @@
 import {
+  subMinutes,
+  subHours,
   addDays,
   endOfDay,
   startOfDay,
@@ -12,6 +14,15 @@ import {
 } from 'date-fns';
 
 const defineds = {
+  lastFiveMinutes: subMinutes(new Date(), 5),
+  lastThirtyMinutes: subMinutes(new Date(), 30),
+  lastHour: subHours(new Date(), 1),
+  lastTwoHours: subHours(new Date(), 2),
+  lastFourHours: subHours(new Date(), 4),
+  lastEightHours: subHours(new Date(), 8),
+  lastTwelveHours: subHours(new Date(), 12),
+  lastEighteenHours: subHours(new Date(), 18),
+  lastTwentyFourHours: subHours(new Date(), 24),
   startOfWeek: startOfWeek(new Date()),
   endOfWeek: endOfWeek(new Date()),
   startOfLastWeek: startOfWeek(addDays(new Date(), -7)),
@@ -42,6 +53,48 @@ export function createStaticRanges(ranges) {
 }
 
 export const defaultStaticRanges = createStaticRanges([
+  // {
+  //   label: 'Last 5 Minutes',
+  //   range: () => ({
+  //     startDate: defineds.lastFiveMinutes,
+  //     endDate: defineds.endOfToday,
+  //   }),
+  // },
+  // {
+  //   label: 'Last 30 Minutes',
+  //   range: () => ({
+  //     startDate: defineds.lastThirtyMinutes,
+  //     endDate: defineds.endOfToday,
+  //   }),
+  // },
+  {
+    label: 'Last Hour',
+    range: () => ({
+      startDate: defineds.lastHour,
+      endDate: defineds.endOfToday,
+    }),
+  },
+  {
+    label: 'Last 4 Hours',
+    range: () => ({
+      startDate: defineds.lastFourHours,
+      endDate: defineds.endOfToday,
+    }),
+  },
+  {
+    label: 'Last 8 Hours',
+    range: () => ({
+      startDate: defineds.lastEightHours,
+      endDate: defineds.endOfToday,
+    }),
+  },
+  {
+    label: 'Last 24 Hours',
+    range: () => ({
+      startDate: defineds.lastTwentyFourHours,
+      endDate: defineds.endOfToday,
+    }),
+  },
   {
     label: 'Today',
     range: () => ({
@@ -78,13 +131,13 @@ export const defaultStaticRanges = createStaticRanges([
       endDate: defineds.endOfMonth,
     }),
   },
-  {
-    label: 'Last Month',
-    range: () => ({
-      startDate: defineds.startOfLastMonth,
-      endDate: defineds.endOfLastMonth,
-    }),
-  },
+  // {
+  //   label: 'Last Month',
+  //   range: () => ({
+  //     startDate: defineds.startOfLastMonth,
+  //     endDate: defineds.endOfLastMonth,
+  //   }),
+  // },
 ]);
 
 export const defaultInputRanges = [
@@ -102,19 +155,19 @@ export const defaultInputRanges = [
       return differenceInCalendarDays(defineds.endOfToday, range.startDate) + 1;
     },
   },
-  {
-    label: 'days starting today',
-    range(value) {
-      const today = new Date();
-      return {
-        startDate: today,
-        endDate: addDays(today, Math.max(Number(value), 1) - 1),
-      };
-    },
-    getCurrentValue(range) {
-      if (!isSameDay(range.startDate, defineds.startOfToday)) return '-';
-      if (!range.endDate) return '∞';
-      return differenceInCalendarDays(range.endDate, defineds.startOfToday) + 1;
-    },
-  },
+  // {
+  //   label: 'days starting today',
+  //   range(value) {
+  //     const today = new Date();
+  //     return {
+  //       startDate: today,
+  //       endDate: addDays(today, Math.max(Number(value), 1) - 1),
+  //     };
+  //   },
+  //   getCurrentValue(range) {
+  //     if (!isSameDay(range.startDate, defineds.startOfToday)) return '-';
+  //     if (!range.endDate) return '∞';
+  //     return differenceInCalendarDays(range.endDate, defineds.startOfToday) + 1;
+  //   },
+  // },
 ];
