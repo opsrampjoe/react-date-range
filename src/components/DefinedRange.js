@@ -41,14 +41,15 @@ class DefinedRanges extends Component {
             return (
               <button
                 type="button"
-                className={cx(styles.staticRange, {
-                  [styles.staticRangeSelected]: Boolean(selectedRange),
-                })}
-                style={{
-                  color: selectedRange
-                    ? selectedRange.color || rangeColors[focusedRangeIndex]
-                    : null,
-                }}
+                className={cx(styles.staticRange)}
+                // className={cx(styles.staticRange, {
+                //   [styles.staticRangeSelected]: Boolean(selectedRange),
+                // })}
+                // style={{
+                //   color: selectedRange
+                //     ? selectedRange.color || rangeColors[focusedRangeIndex]
+                //     : null,
+                // }}
                 key={i}
                 onClick={() => this.handleRangeChange(staticRange.range(this.props))}
                 onFocus={() => onPreviewChange && onPreviewChange(staticRange.range(this.props))}
@@ -65,7 +66,7 @@ class DefinedRanges extends Component {
             );
           })}
         </div>
-        <div className={styles.inputRanges}>
+        {/* <div className={styles.inputRanges}>
           {this.props.inputRanges.map((rangeOption, i) => (
             <div className={styles.inputRange} key={i}>
               <input
@@ -88,7 +89,7 @@ class DefinedRanges extends Component {
               <span className={styles.inputRangeLabel}>{rangeOption.label}</span>
             </div>
           ))}
-        </div>
+        </div> */}
         {this.props.footerContent}
       </div>
     );
