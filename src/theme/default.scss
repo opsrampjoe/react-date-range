@@ -336,6 +336,7 @@
   background: #fff;
   &:hover,
   &:focus {
+    outline: none;
     .rdrStaticRangeLabel {
       background: #eff2f7;
     }
