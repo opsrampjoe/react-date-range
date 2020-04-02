@@ -5,6 +5,7 @@ import {
   endOfDay,
   startOfDay,
   startOfMonth,
+  startOfYear,
   endOfMonth,
   addMonths,
   startOfWeek,
@@ -14,6 +15,7 @@ import {
 } from 'date-fns';
 
 const defineds = {
+  now: new Date(),
   lastFiveMinutes: subMinutes(new Date(), 5),
   lastThirtyMinutes: subMinutes(new Date(), 30),
   lastHour: subHours(new Date(), 1),
@@ -35,6 +37,10 @@ const defineds = {
   endOfMonth: endOfMonth(new Date()),
   startOfLastMonth: startOfMonth(addMonths(new Date(), -1)),
   endOfLastMonth: endOfMonth(addMonths(new Date(), -1)),
+  startOfYear: startOfYear(new Date()),
+  lastSevenDays: addDays(new Date(), -7),
+  lastThirtyDays: addDays(new Date(), -30),
+  lastYear: addDays(new Date(), -365),
 };
 
 const staticRangeHandler = {
@@ -71,64 +77,64 @@ export const defaultStaticRanges = createStaticRanges([
     label: 'Last Hour',
     range: () => ({
       startDate: defineds.lastHour,
-      endDate: defineds.endOfToday,
+      endDate: defineds.now,
     }),
   },
   {
     label: 'Last 4 Hours',
     range: () => ({
       startDate: defineds.lastFourHours,
-      endDate: defineds.endOfToday,
+      endDate: defineds.now,
     }),
   },
   {
     label: 'Last 8 Hours',
     range: () => ({
       startDate: defineds.lastEightHours,
-      endDate: defineds.endOfToday,
+      endDate: defineds.now,
     }),
   },
   {
     label: 'Last 24 Hours',
     range: () => ({
       startDate: defineds.lastTwentyFourHours,
-      endDate: defineds.endOfToday,
+      endDate: defineds.now,
     }),
   },
   {
-    label: 'Today',
+    label: 'Last 7 Days',
     range: () => ({
-      startDate: defineds.startOfToday,
-      endDate: defineds.endOfToday,
+      startDate: defineds.lastSevenDays,
+      endDate: defineds.now,
     }),
   },
   {
-    label: 'Yesterday',
+    label: 'Last 30 Days',
     range: () => ({
-      startDate: defineds.startOfYesterday,
-      endDate: defineds.endOfYesterday,
+      startDate: defineds.lastThirtyDays,
+      endDate: defineds.now,
     }),
   },
 
   {
-    label: 'This Week',
+    label: 'Last 365 Days',
     range: () => ({
-      startDate: defineds.startOfWeek,
-      endDate: defineds.endOfWeek,
+      startDate: defineds.lastYear,
+      endDate: defineds.now,
     }),
   },
   {
-    label: 'Last Week',
-    range: () => ({
-      startDate: defineds.startOfLastWeek,
-      endDate: defineds.endOfLastWeek,
-    }),
-  },
-  {
-    label: 'This Month',
+    label: 'Month to Date',
     range: () => ({
       startDate: defineds.startOfMonth,
-      endDate: defineds.endOfMonth,
+      endDate: defineds.now,
+    }),
+  },
+  {
+    label: 'Year to Date',
+    range: () => ({
+      startDate: defineds.startOfYear,
+      endDate: defineds.now,
     }),
   },
   // {
