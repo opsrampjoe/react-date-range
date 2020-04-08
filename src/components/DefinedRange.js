@@ -14,14 +14,19 @@ class DefinedRanges extends Component {
     };
     this.handleRangeChange = this.handleRangeChange.bind(this);
   }
-  handleRangeChange(range) {
+
+  handleRangeChange(range, index) {
     const { onChange, ranges, focusedRange } = this.props;
-    const selectedRange = ranges[focusedRange[0]];
+    let selectedRange = ranges[focusedRange[0]];
     if (!onChange || !selectedRange) return;
-    onChange({
-      [selectedRange.key || `range${focusedRange[0] + 1}`]: { ...selectedRange, ...range },
-    });
+    onChange(
+      {
+        [selectedRange.key || `range${focusedRange[0] + 1}`]: { ...selectedRange, ...range },
+      },
+      defaultStaticRanges[index].label
+    );
   }
+
   getSelectedRange(ranges, staticRange) {
     const focusedRangeIndex = ranges.findIndex(range => {
       if (!range.startDate || !range.endDate || range.disabled) return false;
@@ -30,6 +35,7 @@ class DefinedRanges extends Component {
     const selectedRange = ranges[focusedRangeIndex];
     return { selectedRange, focusedRangeIndex };
   }
+
   render() {
     const { onPreviewChange, ranges, rangeColors, className } = this.props;
     return (
@@ -51,7 +57,7 @@ class DefinedRanges extends Component {
                 //     : null,
                 // }}
                 key={i}
-                onClick={() => this.handleRangeChange(staticRange.range(this.props))}
+                onClick={() => this.handleRangeChange(staticRange.range(this.props), i)}
                 onFocus={() => onPreviewChange && onPreviewChange(staticRange.range(this.props))}
                 onMouseOver={() =>
                   onPreviewChange && onPreviewChange(staticRange.range(this.props))

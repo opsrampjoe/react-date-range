@@ -14,7 +14,25 @@ class DateRangePicker extends Component {
     };
     this.styles = generateStyles([coreStyles, props.classNames]);
   }
+
   render() {
+    /**
+     * Here I am intercepting the normal unified onChange that gets passed 
+     * down and am attaching a label property (i.e. "Last 4 Hours") if the 
+     * event came from the list of predefined ranges.
+     */
+    const specialHandleChange = (event, label) => {
+      // console.log('specialHandleChange', 'e', e, 'i', i);
+      if (typeof label !== 'undefined') {
+        event.selection.label = label;
+      } else {
+        if (event.selection.label) {
+          delete event.selection.label;
+        }
+      }
+      this.props.onChange(event);
+    };
+
     const { focusedRange } = this.state;
     return (
       <div className={classnames(this.styles.dateRangePickerWrapper, this.props.className)}>
@@ -24,11 +42,13 @@ class DateRangePicker extends Component {
           {...this.props}
           range={this.props.ranges[focusedRange[0]]}
           className={undefined}
+          onChange={specialHandleChange}
         />
         <DateRange
           onRangeFocusChange={focusedRange => this.setState({ focusedRange })}
           focusedRange={focusedRange}
           {...this.props}
+          onChange={specialHandleChange}
           ref={t => (this.dateRange = t)}
           className={undefined}
         />
