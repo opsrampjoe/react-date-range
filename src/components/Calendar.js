@@ -268,6 +268,7 @@ class Calendar extends PureComponent {
                   onChange={evt => {
                     this.updateTime(evt.target.value, range.startDate, range.endDate, 0);
                   }}
+                  required={showTime ? true : false}
                 />
               </span>
               <span
@@ -287,6 +288,7 @@ class Calendar extends PureComponent {
                   onChange={evt => {
                     this.updateTime(evt.target.value, range.startDate, range.endDate, 1);
                   }}
+                  required={showTime ? true : false}
                 />
               </span>
             </div>
