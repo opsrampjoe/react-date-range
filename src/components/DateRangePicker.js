@@ -18,11 +18,10 @@ class DateRangePicker extends Component {
   render() {
     /**
      * Here I am intercepting the normal unified onChange that gets passed 
-     * down and am attaching a label property (i.e. "Last 4 Hours") if the 
+     * in and am attaching a label property (i.e. "Last 4 Hours") if the 
      * event came from the list of predefined ranges.
      */
     const specialHandleChange = (event, label) => {
-      // console.log('specialHandleChange', 'e', e, 'i', i);
       if (typeof label !== 'undefined') {
         event.selection.label = label;
       } else {
@@ -43,6 +42,7 @@ class DateRangePicker extends Component {
           range={this.props.ranges[focusedRange[0]]}
           className={undefined}
           onChange={specialHandleChange}
+          label={this.props.label}
         />
         <DateRange
           onRangeFocusChange={focusedRange => this.setState({ focusedRange })}
