@@ -122,6 +122,7 @@ export default class Main extends Component {
           startDate: new Date(),
           endDate: addDays(new Date(), 7),
           key: 'selection',
+          label: 'Last 4 Hours',
         },
       },
     };
@@ -175,6 +176,7 @@ export default class Main extends Component {
               showTime
               ranges={[this.state.dateRangePicker.selection]}
               direction="horizontal"
+              label={this.state.dateRangePicker.selection.label}
             />
           </div>
         </Section>
@@ -337,6 +339,7 @@ export default class Main extends Component {
             className={'PreviewArea'}
           />
         </Section>
+
         <Section title="DefinedRange">
           <div>
             <input
