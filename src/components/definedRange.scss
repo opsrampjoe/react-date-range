@@ -9,6 +9,13 @@
   font-size: inherit;
 }
 
+.rdrStaticRange.active, 
+.rdrStaticRange.active:hover .rdrStaticRangeLabel, 
+.rdrStaticRange.active:focus .rdrStaticRangeLabel {
+  background-color: #0077C8;
+  color: #fff;
+}
+
 .rdrStaticRangeLabel{}
 
 .rdrInputRanges{}
