@@ -11,6 +11,7 @@ class DefinedRanges extends Component {
     this.state = {
       rangeOffset: 0,
       focusedInput: -1,
+      label: this.props.label,
     };
     this.handleRangeChange = this.handleRangeChange.bind(this);
   }
@@ -36,6 +37,14 @@ class DefinedRanges extends Component {
     return { selectedRange, focusedRangeIndex };
   }
 
+  getClassName(staticRange) {
+    let className = cx(styles.staticRange);
+    if (staticRange.label === this.props.label) {
+      className += ' active';
+    }
+    return className;
+  }
+
   render() {
     const { onPreviewChange, ranges, rangeColors, className } = this.props;
     return (
@@ -47,15 +56,7 @@ class DefinedRanges extends Component {
             return (
               <button
                 type="button"
-                className={cx(styles.staticRange)}
-                // className={cx(styles.staticRange, {
-                //   [styles.staticRangeSelected]: Boolean(selectedRange),
-                // })}
-                // style={{
-                //   color: selectedRange
-                //     ? selectedRange.color || rangeColors[focusedRangeIndex]
-                //     : null,
-                // }}
+                className={this.getClassName(staticRange)}
                 key={i}
                 onClick={() => this.handleRangeChange(staticRange.range(this.props), i)}
                 onFocus={() => onPreviewChange && onPreviewChange(staticRange.range(this.props))}
@@ -113,6 +114,7 @@ DefinedRanges.propTypes = {
   headerContent: PropTypes.any,
   rangeColors: PropTypes.arrayOf(PropTypes.string),
   className: PropTypes.string,
+  label: PropTypes.string,
 };
 
 DefinedRanges.defaultProps = {
