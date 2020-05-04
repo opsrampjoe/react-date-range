@@ -26,7 +26,7 @@ class DateRangePicker extends Component {
         event.selection.label = label;
       } else {
         if (event.selection.label) {
-          delete event.selection.label;
+          event.selection.label = '';
         }
       }
       this.props.onChange(event);
