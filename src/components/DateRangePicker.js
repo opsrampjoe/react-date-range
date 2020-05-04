@@ -25,9 +25,7 @@ class DateRangePicker extends Component {
       if (typeof label !== 'undefined') {
         event.selection.label = label;
       } else {
-        if (event.selection.label) {
-          event.selection.label = '';
-        }
+        event.selection.label = '';
       }
       this.props.onChange(event);
     };
