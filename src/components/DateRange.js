@@ -136,7 +136,7 @@ DateRange.defaultProps = {
   classNames: {},
   ranges: [],
   moveRangeOnFirstSelection: false,
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#0077C8', '#3ecf8e', '#fed14c'],
 };
 
 DateRange.propTypes = {
