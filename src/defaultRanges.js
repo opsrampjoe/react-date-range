@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   subMinutes,
   subHours,
@@ -55,7 +56,7 @@ const staticRangeHandler = {
 };
 
 export function createStaticRanges(ranges) {
-  return ranges.map(range => ({ ...staticRangeHandler, ...range }));
+  return ranges.map((range) => ({ ...staticRangeHandler, ...range }));
 }
 
 export const defaultStaticRanges = createStaticRanges([
@@ -116,13 +117,13 @@ export const defaultStaticRanges = createStaticRanges([
     }),
   },
 
-  {
-    label: 'Last 365 Days',
-    range: () => ({
-      startDate: defineds.lastYear,
-      endDate: defineds.now,
-    }),
-  },
+  // {
+  //   label: 'Last 365 Days',
+  //   range: () => ({
+  //     startDate: defineds.lastYear,
+  //     endDate: defineds.now,
+  //   }),
+  // },
   {
     label: 'Month to Date',
     range: () => ({
@@ -130,13 +131,13 @@ export const defaultStaticRanges = createStaticRanges([
       endDate: defineds.now,
     }),
   },
-  {
-    label: 'Year to Date',
-    range: () => ({
-      startDate: defineds.startOfYear,
-      endDate: defineds.now,
-    }),
-  },
+  // {
+  //   label: 'Year to Date',
+  //   range: () => ({
+  //     startDate: defineds.startOfYear,
+  //     endDate: defineds.now,
+  //   }),
+  // },
   // {
   //   label: 'Last Month',
   //   range: () => ({
@@ -151,7 +152,10 @@ export const defaultInputRanges = [
     label: 'days up to today',
     range(value) {
       return {
-        startDate: addDays(defineds.startOfToday, (Math.max(Number(value), 1) - 1) * -1),
+        startDate: addDays(
+          defineds.startOfToday,
+          (Math.max(Number(value), 1) - 1) * -1
+        ),
         endDate: defineds.endOfToday,
       };
     },
