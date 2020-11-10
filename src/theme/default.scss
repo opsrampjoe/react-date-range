@@ -456,3 +456,57 @@ $color-grey-900: #212121;
   font-weight: bolder;
   padding: 0.833em;
 }
+
+
+.rdrCalendarWrapper {
+  background-color: var(--color-theme-background) !important;
+  color: var(--color-grey-800) !important;
+}
+.rdrDateDisplay {
+  background-color: var(--color-theme-background) !important;
+  color: var(--color-grey-800) !important;
+
+  .rdrDateDisplayItem input {
+    color: var(--color-grey-800) !important;
+  }
+  .rdrDateDisplayItem input[value] {
+    color: var(--color-grey-800) !important;
+  }
+  .rdrDateDisplayItem {
+    background-color: var(--color-theme-background) !important;
+    color: var(--color-grey-800) !important;
+  }
+}
+.rdrMonthAndYearPickers select:hover {
+  background-color: var(--color-theme-body-background) !important;
+  color: var(--color-grey-800) !important;
+}
+.rdrDay {
+  color: var(--color-grey-800) !important;
+}
+.rdrMonthAndYearPickers select {
+  background-color: var(--color-theme-background) !important;
+  color: var(--color-grey-800) !important;
+}
+.rdrNextPrevButton {
+  background-color: var(--color-theme-body-background) !important;
+  color: var(--color-grey-800) !important;
+}
+.rdrDefinedRangesWrapper {
+  background-color: var(--color-theme-background) !important;
+  color: var(--color-grey-800) !important;
+  border-right: 1px solid var(--color-grey-300) !important;
+
+  .rdrStaticRange {
+    border-bottom: 1px solid var(--color-grey-300) !important;
+  }
+}
+.rdrStaticRange:hover,
+.rdrStaticRangeLabel:hover {
+  background: var(--color-theme-body-background) !important;
+  color: var(--color-grey-800) !important;
+}
+.rdrDayDisabled {
+  background-color: var(--color-theme-body-background) !important;
+}
+
