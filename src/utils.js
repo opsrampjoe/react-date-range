@@ -39,7 +39,7 @@ export function calcFocusDate(currentFocusedDate, props) {
   };
   if (areIntervalsOverlapping(targetInterval, currentFocusInterval)) {
     // don't change focused if new selection in view area
-    return currentFocusedDate;
+    // return currentFocusedDate;
   }
   return targetDate;
 }
